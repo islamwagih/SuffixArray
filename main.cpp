@@ -108,12 +108,12 @@ class SuffixArray
                 //if it has no new r2 update it to be -1
                 for(int i=sz-(1<<j);i<sz;i++) arr[i].r2 = -1;
             }
+            //fill our suffix array
+            for(int i=0;i<sz;i++) suffix[arr[i].r1] = i;
         }
 
         void Print()
         {
-            //fill our suffix array first then print it
-            for(int i=0;i<sz;i++) suffix[arr[i].r1] = i;
             for(int i=0;i<sz;i++) cout<<suffix[i]<<' ';
             cout<<endl;
         }
