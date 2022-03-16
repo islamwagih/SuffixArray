@@ -2,13 +2,6 @@
 #include <algorithm>
 using namespace std;
 
-int strLen(char* str)
-{
-    int i = 0;
-    while(str[i] != 0) i++;
-    return i;
-}
-
 //to map any char to it's rank(order)
 class charMapper
 {
@@ -55,10 +48,10 @@ class SuffixArray
 
     public:
 
-        SuffixArray(char str[])
+        SuffixArray(string str)
         {
-            char* sortedCpy = new char[strLen(str)+1];
-            sz = strLen(str);
+            char* sortedCpy = new char[str.size()+1];
+            sz = str.size();
             sortedCpy[sz] = 0; //null character
             for(int i=0;i<sz;i++) sortedCpy[i] = str[i];
             sort(sortedCpy, sortedCpy+sz);
@@ -114,15 +107,16 @@ class SuffixArray
 
         void Print()
         {
-            for(int i=0;i<sz;i++) cout<<suffix[i]<<' ';
-            cout<<endl;
+            for(int i=0;i<sz;i++) cout<<suffix[i]<<'\n';
+            //cout<<endl;
         }
 };
 
 int main()
 {
-    SuffixArray t("ACGACTACGATAAC$");
+    string str;cin>>str;
+    SuffixArray t(str);
     t.ConstructUsingPrefixDoubling();
-    t.Print(); // Prints:  14 11 12  0  6  3  9 13  1  7  4  2  8 10  5
+    t.Print(); 
     return 0;
 }
